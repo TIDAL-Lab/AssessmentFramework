@@ -1,0 +1,445 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+   <title>CT-STEM Assessment (DA2)</title>
+   <meta charset="utf-8">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <script type="text/javascript" src="../js/main.js"></script>
+   <link rel="stylesheet" href="../css/main.css" type="text/css">
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
+   <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' type='text/css'>
+      
+   <!-- This loads all the code for the javascript charts used in this assessmnet -->
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+   <script type="text/javascript" src="js/HDI.js"></script>
+   <style>
+      .mograph {
+         width: 500px;
+         height: 280px;
+         padding: 20px;
+         background-color: white;
+         margin: 25px 0;
+         background-position: 20px 20px;
+         background-repeat: no-repeat;
+      }
+   </style>
+</head>
+
+<body onload="startup();">
+
+<div class="content">
+   
+   <button id="back-button" onclick="backPage();">&#x25C4; BACK</button>
+   <button id="next-button" onclick="nextPage();">NEXT &#x25BA;</button>
+   <div id="page-number">Page 1</div>
+
+   
+   
+<!-- ======================================================================= -->
+<!-- ==  TITLE PAGE                                                       == -->
+<!-- ======================================================================= -->
+   <div class="page">
+      <h1 style="font-size: 40pt;">CT-STEM</h1>
+      <h2>Computational Thinking in Science, Technology, Engineering, and Mathematics</h2>
+      <h3>Data Analysis Skills: Part 2</h3>
+      <h3>Version 0.1</h3>  <br>
+      <img src="figures/logo.png">
+         
+      <div class="logos">
+         <img src="../images/northwestern.png" style="width: 70px; margin: 20px;">
+         <img src="../images/NSF.png" style="width: 70px; margin: 20px;">
+      </div>
+      
+      <div class="footer">
+         This work is supported by the National Science Foundation under grant
+         CNS-1138461 and is covered by <br>Northwestern University IRB Study STU00058570.
+      </div>
+   </div>
+   
+   
+<!-- ======================================================================= -->
+<!-- ==  STUDENT LOGIN PAGE                                               == -->
+<!-- ======================================================================= -->
+   <div class="page">
+      <h1>Student Information</h1>
+      <table class="info-form" style="width: 6in;">
+         <tr>
+            <td class="label"><label for="first-name">First Name</label></td>
+            <td colspan="2"><input type="text" placeholder="First" name="first-name" id="first-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="last-name">Last Name</label></td>
+            <td colspan="2"><input type="text" placeholder="Last" name="last-name" id="last-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="first-name">Email</label></td>
+            <td colspan="2"><input type="email" placeholder="name@myemail.com" name="email" id="email"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="student-id">Student ID</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="student-id" id="student-id" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="school-name">School Name</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="school-name" id="school-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="grade-level">Grade</label></td>
+            <td colspan="2">
+               <select id="grade-level" name="grade-level" required="required">
+                  <option value=""></option>
+                  <option value="6">6th</option>
+                  <option value="7">7th</option>
+                  <option value="8">6th</option>
+                  <option value="9">6th</option>
+                  <option value="10">6th</option>
+                  <option value="11">6th</option>
+                  <option value="12">6th</option>
+                  <option value="ugrad">Undergraduate</option>
+                  <option value="other">Other</option>
+               </select>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="birthdate">Date of Birth</label></td>
+            <td colspan="2"><input type="text" placeholder="mm/dd/yyyy" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" name="birthdate" id="birthdate" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="sex">Sex</label></td>
+            <td colspan="2">
+               <select id="sex" name="sex" required="required">
+                  <option value=""></option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+               </select>
+            </td>
+         </tr>
+
+         <tr>
+            <td class="label"><label for="race-ethnicity">Race&nbsp;/&nbsp;Ethnicity</label></td>
+            <td colspan="2">(check all that apply)</td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Native American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Pacific Islander<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Asian American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">White (Caucasian)<br>
+            </td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Mexican American or Chicano<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Puerto Rican<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Other Latin American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Black or African American<br>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="other-race-ethnicity">Other</label></td>
+            <td colspan="2"><input type="text" name="other-race-ethnicity" id="other-race-ethnicity"></td>
+         </tr>
+      </table>
+   </div>
+ 
+
+ 
+ 
+<!-- ======================================================================= -->
+<!-- ==  INTRODUCTION                                                     == -->
+<!-- ======================================================================= -->
+   <div class="page">
+      <h2>The Human Development Index</h2>
+      <p>
+         <img src="figures/world.png" style="float: right; width: 200px; margin-left: 20px;">
+         There are 196 countries in the world, and the quality of life for people in
+         these contries can vary dramatically. Every year the United Nations ranks
+         countries according to health, education, and living standards. These
+         rankings are combined into a single measure of societal well being called the
+         Human Development Index (HDI).
+      </p>
+      
+      <h2>HDI Visualization</h2>
+      <p>
+         Two important factors that contribute to a country's Human Development
+         Index are life expectancy (how long a person is expected to live) and
+         income per person (how much money a person earns in a year). The graph
+         below allows you to explore these measures for six different countries
+         over a period of 60 years from 1950 to 2010.
+      </p>
+      <div id="hdi1" class="mograph" style="background-image: url('figures/hdi5.png');"></div>
+      <!-- <button onclick="alert(chart4.getState());">Get State</button> -->
+      
+      <p>
+         This chart is interactive. Try changing the values on the x- or y-axis
+         and then pressing the play button. Take a minute to experiment with the
+         graph, and then press the next button at the top of the page.
+      </p>
+   </div>
+   
+
+   
+<!-- ======================================================================= -->
+<!-- == EXPLORING INFORMATION                                             == -->
+<!-- ======================================================================= -->
+   <div class="page">
+      
+      <div class="stimulus">
+         <ul>
+            <li>The play button at the bottom of this graph will animate the data over time.</li>
+            <li>Click on the y-axis label to change the values that are graphed.</li>
+            <li>Click on any of the bars to see the country that it represents.</li>
+         </ul>
+      </div>
+      
+      <div id="hdi2" class="mograph" style="background-image: url('figures/hdi2.png');"></div>
+      
+      <div class="prompt">
+         <b>Item 1a:</b> Based on the graph, which of these countries had a
+         popluation over 1 billion people in 1950? <i>Check all that apply.</i>
+      </div>
+      <ol class="check-all three-columns">
+         <li>Brazil</li>
+         <li>China</li>
+         <li>France</li>
+         <li>India</li>
+         <li>Japan</li>
+         <li>USA</li>
+      </ol>
+      
+      <div class="prompt">
+         <b>Item 1b:</b> Which of these countries had a popluation over 1 billion people
+         in 2010? <i>Check all that apply.</i>
+      </div>
+      <ol class="check-all three-columns">
+         <li>Brazil</li>
+         <li>China</li>
+         <li>France</li>
+         <li>India</li>
+         <li>Japan</li>
+         <li>USA</li>
+      </ol>
+<!--      
+      <div class="prompt">
+         <b>Item 1c:</b> Between 1950 and 2010, which country's population increased
+         the least?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Brazil</li>
+         <li>China</li>
+         <li>France</li>
+         <li>India</li>
+         <li>Japan</li>
+         <li>USA</li>
+      </ol>
+-->      
+      <div class="prompt">
+         <b>Item 1c:</b> In what year did income per person in the United States exceed
+         $20,000? 
+      </div>
+      <ol class="check-one three-columns">
+         <li>1954</li>
+         <li>1964</li>
+         <li>1974</li>
+         <li>1984</li>
+         <li>1994</li>
+         <li>2004</li>
+      </ol>
+      
+   </div>      
+
+
+<!-- ======================================================================= -->
+   <div class="page">
+      
+      <div class="stimulus">
+         Click on the x- or y-axis to change the values that the graph
+         tracks over time. The values are: population, income per person, and
+         life expectancy. 
+      </div>
+      
+      <div id="hdi3" class="mograph" style="background-image: url('figures/hdi3.png');"></div>
+      
+      <div class="prompt">
+         <b>Item 2a:</b>
+         Based on the graph, which of the following assumptions could be true?
+      </div>
+         
+      <ol class="check-one">
+         <li>As a country's income increases, it's population also increases.</li>
+         <li>Life expectancy is generally increasing over time.</li>
+         <li>As a country's life expectancy increases, it's population also increases.</li>
+         <li>As a country's income increases, it's life exectancy also increases.</li>
+      </ol>
+      
+      
+      <div class="prompt">
+         <b>Item 2b:</b>
+         Based on the graph, which of the following assumptions could be true?
+      </div>
+         
+      <ol class="check-one">
+         <li>In 1966, China and Brazil had roughly the same life expectancy.</li>
+         <li>People in Japan are happier than people in Brazil.</li>
+         <li>Having a large population is the biggest factor affecting life expectancy.</li>
+         <li>All of the countries have experienced a steady increase in life expectancy.</li>
+      </ol>
+   </div>
+   
+
+<!-- ======================================================================= -->
+<!-- == RELATIONSHIPS                                                     == -->
+<!-- ======================================================================= -->
+   <div class="page">
+      
+      <div class="stimulus">
+         Here is a different view of the same information for six countries from
+         1950 to 2010. Use the graph to answer the following questions.
+         <b>Remember that you can click on the y-axis label to change the data
+         being graphed.</b>
+      </div>
+      <div id="hdi4" class="mograph" style="background-image: url('figures/hdi4.png');"></div>
+      
+      <div class="prompt">
+         <b>Item 3a:</b> In the late 1950s and early 1960s China went through the
+         <i>Cultural Revolution</i> that dramatically changed life in that country.
+         Based on the graph, which factor was most affected by this event?
+      </div>
+      
+      <ol class="check-one three-columns">
+         <li>Life expectancy</li>
+         <li>Population</li>
+         <li>Worker productivity</li>
+         <li>Income per person</li>
+      </ol>
+<!--
+      <div class="prompt">
+         <b>Item 3b:</b> Which country had the SMALLEST increase in population from 1950 to
+         2010?
+      </div>
+
+      <ol class="check-one three-columns">
+         <li>Brazil</li>
+         <li>China</li>
+         <li>France</li>
+         <li>India</li>
+         <li>Japan</li>
+         <li>USA</li>
+      </ol>
+-->      
+      <div class="prompt">
+         <b>Item 3b:</b> In 2008 and 2009 there was a global economic crisis that
+         caused people around the world to lose money. According to this graph,
+         which two countries were affected the most?
+      </div>
+
+      <ol class="check-one three-columns">
+         <li>Brazil</li>
+         <li>China</li>
+         <li>France</li>
+         <li>India</li>
+         <li>Japan</li>
+         <li>USA</li>
+      </ol>
+   </div> 
+      
+<!-- ======================================================================= -->
+   <div class="page">
+      
+      <div id="hdi5" class="mograph" style="background-image: url('figures/hdi5.png');"></div>
+
+      <div class="stimulus">
+         Consider the following two statements:<br><br>
+         <b>Statement 1:</b> "The population of India will increase the most in the next 10 years."
+         <br>
+         <b>Statement 2:</b> "An increase in life expectancy does not necessarily mean there will be
+         an increase in a country's population."
+      </div>
+      
+      
+      <div class="prompt">
+         <b>Item 4a:</b> Which type of graph is best for supporting Statement 1?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Animated bubble chart
+         <img src="figures/bubble-chart.png" style="width: 100px;">
+         </li>
+         <li>Line graph
+         <img src="figures/line-chart.png" style="width: 100px;"></li>
+         <li>Animated bar chart
+         <img src="figures/bar-chart.png" style="width: 100px;"></li>
+      </ol>
+      
+      <div class="prompt">
+         <b>Item 4a:</b> Which type of graph is best for supporting Statement 2?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Animated bubble chart
+         <img src="figures/bubble-chart.png" style="width: 100px;">
+         </li>
+         <li>Line graph
+         <img src="figures/line-chart.png" style="width: 100px;"></li>
+         <li>Animated bar chart
+         <img src="figures/bar-chart.png" style="width: 100px;"></li>
+      </ol>
+   </div>
+
+<!--         
+   - Item 11: Does a person having more money mean they are more likely to live longer? (another way to ask this would be: Is there a relationship between how much money someone has and how long their live)
+    - Item 12: Which countries life expectancy increased the most in the 1960's?
+-->
+<!-- ======================================================================= -->
+<!--
+   <div class="page">
+      
+      <div class="stimulus">
+         Here are two different maps showing Human Development Index for different
+         parts of the world.
+      </div>
+      <h2>Map 1</h2>
+      <img src="figures/da-world1.png" style="width: 500px; margin: 15px;">
+      <br>
+      <h2>Map 2</h2>
+      <img src="figures/da-world2.png" style="width: 500px; margin: 15px;">
+            
+      <div class="prompt">
+         <b>Item 10:</b> Which of the following statements would best be supported by
+         map 1?
+      </div>
+      
+      <ol class="check-one">
+         <li>Canada's Human Development Index is over 0.9.</li>
+         <li>China has a higher Human Development Index value than India.</li>
+         <li>Canada, Australia, and France all have very high Human Development Index values.</li>
+         <li>Many countries in Africa have a Human Development Index value of less than 0.5.</li>
+         <li>In 2012, Mexico had a slightly higher Human Development Index value than Brazil.</li>
+      </ol>
+   </div> 
+-->
+
+   <div class="page">
+      <h1>Congratulations!</h1>
+      <h2>You're finished. Use any remaining time to go back and check your answers.</h2>
+   </div>
+
+
+      
+<!-- ======================================================================= -->
+   <div class="page">
+      <h1>CT-STEM Skills Taxonomy</h1>
+      <h2>Data and Information Skills</h2>
+      <ol>
+         <li>Collecting Data</li>
+         <li>Creating Data</li>
+         <li>Manipulating Data</li>
+         <li>Analyzing Data</li>
+         <li>Visualizing Data</li>
+      </ol>
+   </div>
+   
+   <div id="status">Saving...</div>
+
+</div>
+      
+</body>
+</html>

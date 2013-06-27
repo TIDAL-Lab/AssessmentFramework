@@ -1,0 +1,636 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+   <title>Build-a-Tree Assessment</title>
+   <meta charset="utf-8">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <script type="text/javascript" src="../js/main.js"></script>
+   <link rel="stylesheet" href="../css/main.css" type="text/css">
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
+   <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' type='text/css'>
+</head>
+
+<body onload="startup();">
+<!-- Dilemma of trait versus features (look at Mayers's questions) -->
+<!--
+ItÕs very important that you give your best answer to every question. Be sure to
+provide an explanation for your answers when youÕre asked to. Even if youÕre not
+sure of your answer, give the best explanation you can. We want to understand
+how you think about these diagrams. -->
+
+<div class="content">
+   
+   <button id="back-button" onclick="backPage();">&#x25C4; BACK</button>
+   <button id="next-button" onclick="nextPage();">NEXT &#x25BA;</button>
+   <div id="page-number">Page 1</div>
+
+  <!-- Title page -->
+   <div class="page">
+      <h1 style="font-size: 40pt;">Build-a-Tree 2</h1>
+      <h2>Life on Earth Project</h2>
+      <h2>Tree Thinking Skills Assessment v0.1</h2>
+         
+      <div class="logos">
+         <img src="../images/northwestern.png" style="width: 70px; margin: 20px;">
+         <img src="../images/NSF.png" style="width: 70px; margin: 20px;">
+      </div>
+      
+      <div class="footer">
+         This work is supported by the National Science Foundation under grant
+         DRL-1010889. Any opinions, findings and conclusions or recommendations
+         expressed in this material are those of the authors and do not
+         necessarily reflect the views of the Foundation. 
+      </div>
+   </div>
+   
+   
+   <div class="page">
+      <h1>Participant Information</h1>
+      <table class="info-form">
+         <tr>
+            <td class="label"><label for="first-name">Today's Date</label></td>
+            <td colspan="2"><input type="text" name="current-date" id="current-date" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="first-name">First Name</label></td>
+            <td colspan="2"><input type="text" placeholder="First" name="first-name" id="first-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="student-id">Family ID</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="student-id" id="student-id" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="age">Age</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="age" id="age" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="grade-level">Grade</label></td>
+            <td colspan="2">
+               <select id="grade-level" name="grade-level" required="required">
+                  <option value=""></option>
+                  <option value="6">6th</option>
+                  <option value="7">7th</option>
+                  <option value="8">6th</option>
+                  <option value="9">6th</option>
+                  <option value="10">6th</option>
+                  <option value="11">6th</option>
+                  <option value="12">6th</option>
+                  <option value="ugrad">Undergraduate</option>
+                  <option value="other">Other</option>
+               </select>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="sex">Sex</label></td>
+            <td colspan="2">
+               <select id="sex" name="sex" required="required">
+                  <option value=""></option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+               </select>
+            </td>
+         </tr>
+
+         <tr>
+            <td class="label"><label for="race-ethnicity">Race&nbsp;/&nbsp;Ethnicity</label></td>
+            <td colspan="2">(check all that apply)</td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Native American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Pacific Islander<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Asian American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">White (Caucasian)<br>
+            </td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Mexican American or Chicano<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Puerto Rican<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Other Latin American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Black or African American<br>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="other-race-ethnicity">Other</label></td>
+            <td colspan="2"><input type="text" name="other-race-ethnicity" id="other-race-ethnicity"></td>
+         </tr>
+      </table>
+   </div>
+   
+   
+
+   <!-- Learning objectives -->
+   <div class="page">
+      <h1>
+         Build-a-Tree 2: Learning Objectives
+      </h1>
+      <ol class="objectives">
+         <li>All living things on Earth are related.</li>
+         <li>All living things on Earth, <b>including humans</b>, are related.</li>
+         <li>All living things on Earth are related because they share <b>ancestors</b> in common.</li>
+         <li>Some kinds of living things are more closely related than others.</li>
+         <li style="text-decoration: line-through;">Living things are more closely related if they share a more recent ancestor in common.</li>
+         <li>Living things <b>inherit traits</b> from their ancestors.</li>
+         <li>Some kinds of living things have <b>inherited traits</b> that others do not.</li>
+         <li style="text-decoration: line-through;">Sometimes organisms that <b>look different</b> can be closely related.</li>
+         <li style="text-decoration: line-through;">Sometimes organisms that <b>look similar</b> can be distantly related.</li>
+         <li>Tree diagrams are used to represent evolutionary relationships among organisms.</li>
+         <li style="text-decoration: line-through;">Branches in the tree represent points at which groups of organisms separated.</li>
+         <li>All organisms connected "above" a branching point share inherited traits.</li>
+         <li style="text-decoration: line-through;">Clades can be rotated around branching points without altering the meaning of the tree (i.e. the left-to-right ordering of tips is not important).</li>
+      </ol>
+   </div>
+   
+   
+   <!-- PAGE 6, testing learning goals TS5 and ST1:
+   TS5 - All organisms connected “above” a branching point share traits (revisit wording).
+   ST1 - Evolutionary relationships are determined by traits that are shared by some
+   groups of living things, and not by others. -->
+   <div class="page">
+      
+      <div class="stimulus">
+         A team of scientists working in Brazil found many different kinds of plants and
+         animals. They made this picture of some of some of them.
+         <img src="figures/figure4.1.png" style="width: 3.8in;" class="figure">
+      
+      <!-- this is an image of a cladogram with fruit trees, piranhas, lizards, sloths, and bats. -->   
+      </div>
+      
+      
+      <div class="item" id="item2.3">
+         <div class="prompt">
+            <b>Item 1a:</b> What do you think this picture shows?
+         </div>
+            
+         <textarea id="item3" placeholder="Enter your response here"></textarea>
+      </div>
+      
+      
+      <div class="item" id="item2.4">
+         <div class="prompt">
+            <b>Item 1b:</b> What do you think the lines in this picture mean?
+         </div>
+            
+         <textarea placeholder="Enter your response here"></textarea>
+      </div>
+      
+      
+      <div class="item" id="item2.9">
+         <div class="prompt">
+            <b>Item 1c:</b> Do you think that humans belong in this picture?  Why or why not?
+         </div>
+            
+         <textarea id="item3" placeholder="Enter your response here"></textarea>
+      </div>
+      
+   </div>
+   
+   <div class="page">
+      
+      <div class="stimulus">
+         Consider the same picture that the team of scientists in Brazil made.
+         
+      <!-- this is an image of a cladogram with fruit trees, piranhas, lizards, sloths, and bats. -->   
+         <img src="figures/figure4.1.png" style="width: 4in;" class="figure">
+      </div>
+      
+      <div class="item" id="item2.5">
+         <div class="prompt">
+            <b>Item 2a:</b> Which of these living things have a <b>backbone</b>?
+            <i>Check all that apply.</i>
+         </div>
+            
+         <ol class="check-all three-columns">
+            <li>None</li>
+            <li>Fruit Trees</li>
+            <li>Piranhas</li>
+            <li>Lizards</li>
+            <li>Sloths</li>
+            <li>Bats</li>
+         </ol>
+      </div>
+      
+
+      <div class="item" id="item2.6">
+         <div class="prompt">
+            <b>Item 2b:</b> Which of these living things have an <b>amniotic sac</b>?
+            <i>Check all that apply.</i>
+         </div>
+            
+         <ol class="check-all three-columns">
+            <li>None</li>
+            <li>Fruit Trees</li>
+            <li>Piranhas</li>
+            <li>Lizards</li>
+            <li>Sloths</li>
+            <li>Bats</li>
+         </ol>
+      </div>     
+
+      
+      <div class="item" id="item2.7">
+         <div class="prompt">
+            <b>Item 2c:</b> Which of these living things have <b>DNA</b>?
+            <i>Check all that apply.</i>
+         </div>
+            
+         <ol class="check-all three-columns">
+            <li>None</li>
+            <li>Fruit Trees</li>
+            <li>Piranhas</li>
+            <li>Lizards</li>
+            <li>Sloths</li>
+            <li>Bats</li>
+         </ol>
+      </div>     
+   </div>
+   
+   
+   <div class="page">
+      <div class="stimulus">
+         Ancestors are parents, grandparents, great-grandparents, great-great
+         grandparents, going back and back in time.
+         
+         Here are some ideas that other people had about ancestors of living things.
+         
+         How much do you disagree or agree with their ideas?
+      </div>
+      <div class="prompt">
+      </div>
+
+      <table class="likert">
+         <tr>
+            <td class="prompt"><b>Some people said that...</b></td>
+            <th>Strongly<br>Agree</th>
+            <th>Agree</th>
+            <th>Neutral</th>
+            <th>Disagree</th>
+            <th>Strongly<br>Disagree</th>
+         </tr>
+         <tr>
+            <td class="prompt">
+               3a. RABBITS and LIZARDS had the same ancestor a long, long time ago.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               3b. HUMANS and MUSHROOMS had the same ancestor a long, long time ago.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               3c. MICE and RATS had the same ancestor a long, long time ago.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               3d. BEARS and SUNFLOWERS had the same ancestor a long, long time ago.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               3e. ALL living things had the same ancestor a long, long time ago.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+      </table>
+   </div>
+
+
+   <!-- PAGE 1, testing learning goal TS1: Tree diagrams are used to
+   represent evolutionary relationships among organisms.  -->   
+   <div class="page">
+      <div class="stimulus">
+         Dr. Suarez studies insects. She showed this picture to some other
+         scientists as part of a presentation.
+         
+         <!-- this is a picture of insects -->
+         <img src="figures/figure1.1.png" style="width: 4in;" class="figure">
+      </div>
+      
+      <div class="item" id="item1.1">
+      
+         <div class="prompt">
+            <b>Item 4a:</b> What do you think Dr. Suarez is trying to communicate with this picture?
+            <i>Check all that apply.</i>
+         </div>
+            
+         <ol class="check-all">
+            <li>Butterflies and fleas share traits that beetles and fleas do not share.</li>
+            <li>Some of these insects look similar to one another.</li>
+            <li>All of these insects share an ancestor in common.</li>
+            <li>Some of these insects eat other types of insects.</li>
+            <li>Flies, fleas, and butterflies all have silky glands.</li>
+            <li>All of these insects are about the same size.</li>
+         </ol>
+         
+         
+         <div class="prompt">
+            <b>Item 4b:</b> Based on this picture, which two types of insect are most closely related?
+         </div>
+         
+         <ol class="check-one two-columns">
+            <li>Flies and Beetles</li>
+            <li>Flies and Termites</li>
+            <li>Flies and Dragonflies</li>
+            <li>Flies and Butterflies</li>
+         </ol>
+      </div>
+   </div>
+   
+      <!-- page 2, testing learning goals TS2 and SA9 primarily and TS3 secondarily:
+      TS2- Branches in the tree represent points at which groups of organisms separated.
+      SA9 - Some kinds of living things are more closely related than others.
+      TS3 - Groups of different kinds of living things are more closely related if they share a
+      more recent common ancestor.
+      -->   
+   <div class="page">
+      
+      <div class="stimulus">
+         This picture shows some types of animals. 
+
+         <img src="figures/figure3.2.png" style="width: 5in;" class="figure">
+      </div>
+      
+      <div class="prompt">
+         <b>Item 5a:</b> Based on this picture, which two types of animals are most closely related?
+      </div>
+         
+      <ol class="check-one two-columns">
+         <li>Rodents and Sharks</li>
+         <li>Rodents and Ray-finned Fishes</li>
+         <li>Rodents and Amphibians</li>
+         <li>Rodents and Crocodiles</li>
+      </ol>
+      
+      <div class="prompt">
+         <b>Item 5b:</b> According to the picture, which of the following traits do Amphibians have?
+         <i>Check all that apply.</i>
+      </div>
+         
+      <ol class="check-all two-columns">
+         <li>Four limbs</li>
+         <li>Hair</li>
+         <li>Amniotic egg</li>
+         <li>Two post-orbital fenestrae</li>
+         <li>Vertebrae</li>
+         <li>Bony skeleton</li>
+      </ol>
+      
+   </div>
+   
+
+   
+   
+   <div class="page">
+      
+      <div class="stimulus">
+         Here is the same picture again.
+         <img src="figures/figure3.2.png" style="width: 5in;" class="figure">
+      </div>
+      
+      <div class="prompt">
+         <b>Item 6a:</b> What is a picture like this useful for?
+      </div>
+      
+      <ol class="check-one">
+         <li>Showing evolutionary relationships</li>
+         <li>Showing food webs</li>
+         <li>Showing endangered species</li>
+         <li>Showing natural habitats</li>
+      </ol>
+      
+      <div class="prompt">
+         <b>Item 6b:</b> Which of the following traits is NOT shared by Amphibians and Birds? 
+      </div>
+         
+      <ol class="check-one two-columns">
+         <li>Amniotic egg</li>
+         <li>Four limbs</li>
+         <li>Bony skeleton</li>
+         <li>Vertebrae</li>
+      </ol>
+         
+      <div class="prompt">
+         <b>Item 6c:</b> Which of the following TWO traits are shared by both Amphibians and Birds?
+      </div>
+         
+      <ol class="check-one two-columns">
+         <li>Bony skeleton and amniotic egg</li>
+         <li>Four limbs and hair</li>
+         <li>Bony skeleton and four limbs</li>
+         <li>Hair and two post-orbital fenestrae</li>
+      </ol>
+   </div>
+   
+   <!-- PAGE 4, testing learning goals ST1, ST2, and TS5:
+   ST1 - Evolutionary relationships are determined by traits that are shared by some groups of
+   living things and not others.
+   ST2 - Traits are inherited from shared ancestors (homologous characters; synapomorphies).
+   TS5 - All organisms "above" a branching point share traits.-->   
+   <div class="page">
+      
+      <div class="stimulus">
+         We asked some other people: <i>Why do Rabbits and Rodents both have hair?</i> <br>         
+      </div>
+      
+      <div class="stimulus" style="text-align: center;">
+         <img src="figures/rabbit.png" style="margin: 20px;">
+         <img src="figures/rat.png" style="margin: 20px;">
+      </div>
+
+      <div class="prompt">
+         How much do you agree or disagree with each of their ideas below?
+      </div>
+      
+      <table class="likert">
+         <tr>
+            <td class="prompt"><b>Some people said:</b></td>
+            <th>Strongly<br>Agree</th>
+            <th>Agree</th>
+            <th>Neutral</th>
+            <th>Disagree</th>
+            <th>Strongly<br>Disagree</th>
+         </tr>
+         <tr>
+            <td class="prompt">
+               7a. Someone or some thing created rabbits and rodents with hair.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               7b. Rabbits and rodents had an ancestor in common that had hair.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               7c. Rabbits and rodents have hair because they are mammals and all mammals have hair.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               7d. Rabbits and rodents are actually not related, they both developed hair independently.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+               7e. Rabbits and rodents both need hair to survive.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+      </table>
+   </div>
+   
+
+   
+   <!-- PAGE 5, testing learning goal TS4 primarily, TS2 secondarily:
+   TS4 - Clades can be rotated around separation points without altering the
+   meaning of the tree (i.e. the left-to-right ordering of tips is not important.
+   TS2 - Branches in the tree represent points at which groups of organisms separated.)-->
+   <div class="page">
+      
+      <div class="stimulus">
+         Look at this picture.
+         
+         <!-- this is a picture of a cladogram with a jellyfish, goldfish, lizard, alligator
+         and pigeon-->
+         <img src="figures/figure2.1.png" style="width: 3in;" class="figure">
+      </div>
+      
+      <div class="item" id="item2.2">
+         <div class="prompt">
+               <b>Item 8:</b> Which of the following pictures shows the exact same <i>relationships</i>?
+         </div>
+            
+         <ol class="check-one two-columns">
+            
+         <!-- these are all pictures cladograms depicting a jellyfish, goldfish, lizard, alligator
+         and pigeon-->
+            <li><img src="figures/figure2.2.png" style="width: 2in;"></li>
+            <li><img src="figures/figure2.3.png" style="width: 2in;"></li>
+            <li><img src="figures/figure2.4.png" style="width: 2in;"></li>
+            <li><img src="figures/figure2.5.png" style="width: 2in;"></li>
+            <li><img src="figures/figure2.6.png" style="width: 2in;"></li>
+         </ol>
+      </div>
+   </div>
+   
+   
+   <!-- PAGE 8, testing learning goals ST6 and ST5:
+   ST6 - Sometimes organisms that look similar can be distantly related (homoplastic characters).
+   ST5 - Sometimes organisms that look different can be closely related.-->
+   <div class="page">
+      
+      <div class="stimulus">
+         This is a picture of a shark, dolphin, and moose. 
+         <img src="figures/figure5.1.png" style="width: 5.5in;" class="figure">
+
+         We asked some other people: "How are dolphins, shark, and moose related?" <br>
+         <i>How much do you disagree or agree with their ideas?</i>
+      </div>
+      
+      <table class="likert">
+         <tr>
+            <td class="prompt"><b>Some people said that...</b></td>
+            <th>Strongly<br>Agree</th>
+            <th>Agree</th>
+            <th>Neutral</th>
+            <th>Disagree</th>
+            <th>Strongly<br>Disagree</th>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9a. Dolphins and sharks are most closely related because they live in the
+            sea and look similar to one another.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9b. Moose and dolphins are most closely related because they share
+            traits like mammary glands and hair.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9c. Moose and dolphins are NOT related.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9d. Moose and dolphins are most closely related because they have a more
+            recent common ancestor than dolphins and sharks.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9e. Dolphins, sharks, and moose did not evolve from a common ancestor.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9f. Dolphins, sharks, and moose were all created around the same time.
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+         <tr>
+            <td class="prompt">
+            9g. Dolphins, sharks, and moose are all related because all living things
+            on Earth are related. 
+            </td>
+            <td></td> <td></td> <td></td> <td></td> <td></td>
+         </tr>
+      </table>
+   </div>
+
+      <!-- page 9, testing learning goals TS2 and TS3:
+      TS2 - Branches in the tree represent points at which groups of organisms separated.
+      TS3 - Groups of different kinds of living things are more closely related if they share
+      a more recent common ancestor.-->
+   <!--
+   <div class="page">
+      
+      <div class="stimulus">
+         Consider four types of animals: A, B, C, and D.
+         <ul>
+            <li>A and B shared an ancestor in common 1.5 million years ago.</li>
+            <li>C shared an ancestor with A and B over 10 million years ago.</li>
+            <li>D shared an ancestor with A, B, and C over 80 million years ago.</li>
+         </ul>
+      </div>
+      <div class="prompt">
+         <b>Item 10a:</b> Using this information, which picture shows the correct
+         relationships for these animals?
+      </div>
+      <ol class="check-one two-columns">
+         <li><img src="figures/figure6.1.png" style="width: 150px;"></li>
+         <li><img src="figures/figure6.2.png" style="width: 150px;"></li>
+         <li><img src="figures/figure6.3.png" style="width: 150px;"></li>
+         <li><img src="figures/figure6.4.png" style="width: 150px;"></li>
+      </ol>
+   </div>      
+   -->
+
+   <div class="page">
+      <h1>All finished!</h1>
+      <h2>Thanks again for helping us test our exhibit.</h2>
+   </div>
+   
+   
+   <div id="status">Saving...</div>
+</div>
+   
+</body>
+</html>

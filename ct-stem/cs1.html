@@ -1,0 +1,460 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+   <title>CT-STEM Assessment (CS1)</title>
+   <meta charset="utf-8">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <script type="text/javascript" src="../js/main.js"></script>
+   <link rel="stylesheet" href="../css/main.css" type="text/css">
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
+   <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' type='text/css'>
+      
+   <script src="codemirror-3.13/lib/codemirror.js"></script>
+   <link rel="stylesheet" href="codemirror-3.13/lib/codemirror.css">
+   <link rel="stylesheet" href="codemirror-3.13/theme/solarized.css">
+   <script src="codemirror-3.13/mode/python.js"></script>
+   <style>
+      .CodeMirror {border: 1px solid black; font-size:12pt; }
+   </style>
+</head>
+
+<body onload="startup();">
+
+<div class="content">
+   
+   <button id="back-button" onclick="backPage();">&#x25C4; BACK</button>
+   <button id="next-button" onclick="nextPage();">NEXT &#x25BA;</button>
+   <div id="page-number">Page 1</div>
+
+<!-- ======================================================================= -->
+<!-- Title page -->
+   <div class="page">
+      <h1 style="font-size: 40pt;">CT-STEM</h1>
+      <h2>Computational Thinking in Science, Technology, Engineering, and Mathematics</h2>
+      <h3>Computer Science Skills: Part 1</h3>
+      <h3>Version 0.1</h3>  <br>
+      <img src="figures/logo.png">
+         
+      <div class="logos">
+         <img src="../images/northwestern.png" style="width: 70px; margin: 20px;">
+         <img src="../images/NSF.png" style="width: 70px; margin: 20px;">
+      </div>
+      
+      <div class="footer">
+         This work is supported by the National Science Foundation under grant
+         CNS-1138461 and is covered by <br>Northwestern University IRB Study STU00058570.
+      </div>
+   </div>
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <h1>Student Information</h1>
+      <table class="info-form">
+         <tr>
+            <td class="label"><label for="first-name">First Name</label></td>
+            <td colspan="2"><input type="text" placeholder="First" name="first-name" id="first-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="last-name">Last Name</label></td>
+            <td colspan="2"><input type="text" placeholder="Last" name="last-name" id="last-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="first-name">Email</label></td>
+            <td colspan="2"><input type="email" placeholder="name@myemail.com" name="email" id="email"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="student-id">Student ID</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="student-id" id="student-id" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="school-name">School Name</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="school-name" id="school-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="grade-level">Grade</label></td>
+            <td colspan="2">
+               <select id="grade-level" name="grade-level" required="required">
+                  <option value=""></option>
+                  <option value="6">6th</option>
+                  <option value="7">7th</option>
+                  <option value="8">6th</option>
+                  <option value="9">6th</option>
+                  <option value="10">6th</option>
+                  <option value="11">6th</option>
+                  <option value="12">6th</option>
+                  <option value="ugrad">Undergraduate</option>
+                  <option value="other">Other</option>
+               </select>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="birthdate">Date of Birth</label></td>
+            <td colspan="2"><input type="text" placeholder="mm/dd/yyyy" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" name="birthdate" id="birthdate" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="sex">Sex</label></td>
+            <td colspan="2">
+               <select id="sex" name="sex" required="required">
+                  <option value=""></option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+               </select>
+            </td>
+         </tr>
+
+         <tr>
+            <td class="label"><label for="race-ethnicity">Race&nbsp;/&nbsp;Ethnicity</label></td>
+            <td colspan="2">(check all that apply)</td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Native American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Pacific Islander<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Asian American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">White (Caucasian)<br>
+            </td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Mexican American or Chicano<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Puerto Rican<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Other Latin American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Black or African American<br>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="other-race-ethnicity">Other</label></td>
+            <td colspan="2"><input type="text" name="other-race-ethnicity" id="other-race-ethnicity"></td>
+         </tr>
+      </table>
+   </div>
+
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         A climate scientist wrote this computer program to measure air temperatures
+         at a weather station.
+         <pre>
+            repeat 20 times:
+               pause-seconds(450)
+               record-temperature
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 1:</b> Which of these plots shows her measurements?
+      </div>
+      <ol class="check-one">
+         <li><img src="figures/temp-plot1.png" style="width: 450px;"></li>
+         <li><img src="figures/temp-plot2.png" style="width: 450px;"></li>
+         <li><img src="figures/temp-plot3.png" style="width: 450px;"></li>
+         <li><img src="figures/temp-plot4.png" style="width: 450px;"></li>
+      </ol>
+   </div>
+   
+
+
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze1.png" style="float: right; margin-left: 20px; width: 220px;">
+         <p>
+         A team of engineering students is building an autonomous robot for a contest.
+         To win, they must program their robot to move around a grid while avoiding
+         obstacles. The robot moves exactly one square at a time either up, down,
+         left, or right.
+         </p>
+         The team started by writing this program to move their robot.
+         <pre>
+            move-up
+            move-right
+            move-up
+            move-right
+            move-right
+         </pre>
+      </div>
+      <br clear="all">
+      <div class="prompt">
+         <b>Item 2a:</b> After running the program, which square will the robot stop on.
+      </div>
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+      <br><br>
+      
+      <div class="stimulus">
+         The team tried changing their program to this:
+         <pre>
+            move-up
+            move-right
+            move-up
+            move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 2b:</b> Now where will the robot stop?
+      </div>
+      
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+   </div>
+   
+
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze2.png" style="float: right; margin-left: 20px; width: 220px;">
+         The team of engineering students added sensors to their robot to help
+         it avoid obstacles (shown as grey squares on the grid). Then they wrote
+         this program:
+         <pre>
+            if obstacle-left then:
+               move-right
+            if obstacle-up then:
+               move-down
+            if obstacle-right then:
+               move-left
+            if obstacle-down then:
+               move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 3a:</b> On which square will the robot stop?
+      </div>
+      
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+      <br><br>
+      
+      <div class="stimulus">
+         The students then changed their program to this:
+         <pre>
+            if obstacle-left then:
+               move-right
+            else if obstacle-up then:
+               move-down
+            else if obstacle-right then:
+               move-left
+            else:
+               move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 3b:</b> Now where will the robot stop?
+      </div>
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+   </div>
+   
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze3.png" style="float: right; margin-left: 10px; width: 200px;">
+         The students now want to make the robot move in a bigger
+         world. They tried this program, but the robot ran into an obstacle.
+         <pre>
+            repeat forever:
+               move-up
+               move-right
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 4a:</b> Which obstacle did the robot hit?
+      </div>
+      
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+      
+      <div class="stimulus">
+         They tried a different program, but the robot ran into an obstacle again.
+         <pre>
+            repeat forever:
+               move-right
+               move-up
+               move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 4b:</b> Which obstacle did the robot hit this time?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+      
+      <div class="stimulus">
+         They tried one more program, but the robot still hit an obstacle.
+         <pre>
+            repeat forever:
+               move-up
+               repeat-until obstacle-right:
+                  move-right
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 4c:</b> Which obstacle did the robot hit this time? 
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+   </div>
+   
+
+
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze6.png" style="margin: 10px; width: 500px;">
+      </div>
+      <div class="prompt">
+         <b>Item 5:</b>  Try changing this program to move the robot to the STAR.
+      </div>
+      <div style="padding: 10px;">
+      <textarea id="code1" name="code1">
+repeat-forever:
+   move-up
+   move-right
+      </textarea>
+      </div>
+      <script>
+         var el = document.getElementById("code1");
+         var editor = CodeMirror.fromTextArea(el, {
+            lineNumbers: true,
+            theme : 'solarized dark'
+         });
+      </script>
+      
+      <div class="simulus">
+         Here are the commands that the robot knows:
+         <pre style="padding: 10px; border: 1px solid black;">
+   move-up           move-down
+   move-left         move-right
+   
+   obstacle-up       obstacle-down
+   obstacle-left     obstacle-right
+   
+   repeat-forever:   repeat-until
+   
+   if: else if: else:
+         </pre>
+      </div>
+   </div>
+   
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze5.png" style="width: 500px; margin-bottom: 12px;"><br>
+         The team has now tried to get the robot to start avoiding obstacles with
+         this program:
+         <pre>
+            define climb-stair-up:
+               move-up
+               move-right
+               
+            define climb-stair-down:
+               move-right
+               move-down
+               
+            define walk-right:
+               if obstacle-right then:
+                  climb-stair-up
+               else:
+                  right
+                  
+            repeat forever:
+               walk-right
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 6:</b> Which obstacle will the robot hit when it runs this program?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+   </div>
+   
+   
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze5.png" style="width: 500px; margin-bottom: 12px;"><br>
+         They tried changing their program:
+         <pre>
+            define climb-stair-up:
+               move-up
+               move-right
+               
+            define climb-stair-down:
+               move-right
+               move-down
+               
+            define walk-right:
+               if obstacle-right then:
+                  climb-stair-up
+               else if obstacle-down then:
+                  right
+               else:
+                  climb-stair-down
+                  
+            repeat forever:
+               walk-right
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 7:</b> Which obstacle will the robot hit this time?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+   </div>
+   
+   
+   <div class="page">
+      <h1>Congratulations!</h1>
+      <h2>You're finished. Use any remaining time to go back and check your answers.</h2>
+   </div>
+   
+</div>
+
+
+   
+</body>
+</html>

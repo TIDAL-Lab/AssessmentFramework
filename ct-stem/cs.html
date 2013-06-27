@@ -1,0 +1,706 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+   <title>CT-STEM Assessment (CS)</title>
+   <meta charset="utf-8">
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <script type="text/javascript" src="../js/main.js"></script>
+   <link rel="stylesheet" href="../css/main.css" type="text/css">
+   <link rel="stylesheet" href="../css/print.css" type="text/css" media="print">
+   <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' type='text/css'>
+      
+   <script src="codemirror-3.13/lib/codemirror.js"></script>
+   <link rel="stylesheet" href="codemirror-3.13/lib/codemirror.css">
+   <link rel="stylesheet" href="codemirror-3.13/theme/solarized.css">
+   <script src="codemirror-3.13/mode/python.js"></script>
+   <style>
+      .CodeMirror {border: 1px solid black; font-size:12pt; }
+   </style>
+</head>
+
+<body onload="startup();">
+
+<div class="content">
+   
+   <button id="back-button" onclick="backPage();">&#x25C4; BACK</button>
+   <button id="next-button" onclick="nextPage();">NEXT &#x25BA;</button>
+   <div id="page-number">Page 1</div>
+
+<!-- ======================================================================= -->
+<!-- Title page -->
+   <div class="page">
+      <h1 style="font-size: 40pt;">CT-STEM</h1>
+      <h2>Computational Thinking in Science, Technology, Engineering, and Mathematics</h2>
+      <h3>Computer Science Skills</h3>
+      <h3>Version 0.1</h3>  <br>
+      <img src="figures/logo.png">
+         
+      <div class="logos">
+         <img src="../images/northwestern.png" style="width: 70px; margin: 20px;">
+         <img src="../images/NSF.png" style="width: 70px; margin: 20px;">
+      </div>
+      
+      <div class="footer">
+         This work is supported by the National Science Foundation under grant
+         CNS-1138461 and is covered by <br>Northwestern University IRB Study STU00058570.
+      </div>
+   </div>
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <h1>Student Information</h1>
+      <table class="info-form" style="width: 6in;">
+         <tr>
+            <td class="label"><label for="first-name">First Name</label></td>
+            <td colspan="2"><input type="text" name="first-name" id="first-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="last-name">Last Name</label></td>
+            <td colspan="2"><input type="text" name="last-name" id="last-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="first-name">Email</label></td>
+            <td colspan="2"><input type="email" placeholder="name@myemail.com" name="email" id="email"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="student-id">Student ID</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="student-id" id="student-id" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="school-name">School Name</label></td>
+            <td colspan="2"><input type="text" placeholder="" name="school-name" id="school-name" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="grade-level">Grade</label></td>
+            <td colspan="2">
+               <select id="grade-level" name="grade-level" required="required">
+                  <option value=""></option>
+                  <option value="6">6th</option>
+                  <option value="7">7th</option>
+                  <option value="8">6th</option>
+                  <option value="9">6th</option>
+                  <option value="10">6th</option>
+                  <option value="11">6th</option>
+                  <option value="12">6th</option>
+                  <option value="ugrad">Undergraduate</option>
+                  <option value="other">Other</option>
+               </select>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="birthdate">Date of Birth</label></td>
+            <td colspan="2"><input type="text" placeholder="mm/dd/yyyy" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" name="birthdate" id="birthdate" required="required"></td>
+         </tr>
+         <tr>
+            <td class="label"><label for="sex">Sex</label></td>
+            <td colspan="2">
+               <select id="sex" name="sex" required="required">
+                  <option value=""></option>
+                  <option value="F">Female</option>
+                  <option value="M">Male</option>
+               </select>
+            </td>
+         </tr>
+
+         <tr>
+            <td class="label"><label for="race-ethnicity">Race&nbsp;/&nbsp;Ethnicity</label></td>
+            <td colspan="2">(check all that apply)</td>
+         </tr>
+         <tr>
+            <td></td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Native American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Pacific Islander<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Asian American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">White (Caucasian)<br>
+            </td>
+            <td>
+               <input type="checkbox" name="race-ethnicity" value="mex">Mexican American or Chicano<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Puerto Rican<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Other Latin American<br>
+               <input type="checkbox" name="race-ethnicity" value="mex">Black or African American<br>
+            </td>
+         </tr>
+         <tr>
+            <td class="label"><label for="other-race-ethnicity">Other</label></td>
+            <td colspan="2"><input type="text" name="other-race-ethnicity" id="other-race-ethnicity"></td>
+         </tr>
+      </table>
+   </div>
+
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         A climate scientist wrote this computer program to measure air temperatures
+         at a weather station.
+         <pre>
+            repeat 20 times:
+               pause-seconds(450)
+               record-temperature
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 1:</b> Which of these plots shows her measurements?
+      </div>
+      <ol class="check-one">
+         <li><img src="figures/temp-plot1.png" style="width: 450px;"></li>
+         <li><img src="figures/temp-plot2.png" style="width: 450px;"></li>
+         <li><img src="figures/temp-plot3.png" style="width: 450px;"></li>
+         <li><img src="figures/temp-plot4.png" style="width: 450px;"></li>
+      </ol>
+   </div>
+   
+
+   
+<!-- ======================================================================= -->   
+   <div class="page">
+      <div class="stimulus">
+         A biologist is studying the beak sizes of a type of bird living on a
+         small island. A sample of his data is shown below.
+         <style>
+            table.data-table {
+               padding: 10px;
+               margin: 0;
+               width: 100%;
+            }
+            table.data-table td, th {
+               text-align: center;
+            }
+         </style>
+         <div style="height: 3in; width: 4in; overflow-y: scroll; margin: 20px 0 20px 80px; border: 1px solid black; background-color: white;">
+         <table class="data-table">
+            <tr>
+               <th>Year</th>
+               <th>Month</th>
+               <th>Bird_ID</th>
+               <th>Sex</th>
+               <th>Beak_Size (mm)</th>
+            </tr>
+            <tr> <td>2008</td> <td>01</td> <td>F113</td> <td>Male</td> <td>10</td> </tr>
+            <tr> <td>2008</td> <td>01</td> <td>F119</td> <td>Male</td> <td>6.2</td> </tr>
+            <tr> <td>2008</td> <td>02</td> <td>F215</td> <td>Female</td> <td>11.1</td> </tr>
+            <tr> <td>2008</td> <td>03</td> <td>F085</td> <td>Female</td> <td>4.9</td> </tr>
+            <tr> <td>2008</td> <td>03</td> <td>F072</td> <td>Female</td> <td>6.6</td> </tr>
+            <tr> <td>2008</td> <td>03</td> <td>F115</td> <td>Male</td> <td>6.8</td> </tr>
+            <tr> <td>2008</td> <td>05</td> <td>F022</td> <td>Female</td> <td>10.2</td> </tr>
+
+            <tr> <td>2009</td> <td>04</td> <td>F113</td> <td>Male</td> <td>10.1</td> </tr>
+            <tr> <td>2009</td> <td>04</td> <td>F119</td> <td>Male</td> <td>6.2</td> </tr>
+            <tr> <td>2009</td> <td>05</td> <td>F215</td> <td>Female</td> <td>11</td> </tr>
+            <tr> <td>2009</td> <td>05</td> <td>F085</td> <td>Female</td> <td>5.1</td> </tr>
+            <tr> <td>2009</td> <td>05</td> <td>F072</td> <td>Female</td> <td>6.4</td> </tr>
+            <tr> <td>2009</td> <td>05</td> <td>F115</td> <td>Male</td> <td>6.9</td> </tr>
+            <tr> <td>2009</td> <td>06</td> <td>F022</td> <td>Female</td> <td>10.25</td> </tr>
+
+            <tr> <td>2010</td> <td>01</td> <td>F113</td> <td>Male</td> <td>10.2</td> </tr>
+            <tr> <td>2010</td> <td>01</td> <td>F119</td> <td>Male</td> <td>6.3</td> </tr>
+            <tr> <td>2010</td> <td>02</td> <td>F215</td> <td>Female</td> <td>11.4</td> </tr>
+            <tr> <td>2010</td> <td>03</td> <td>F085</td> <td>Female</td> <td>5.1</td> </tr>
+            <tr> <td>2010</td> <td>03</td> <td>F072</td> <td>Female</td> <td>6.8</td> </tr>
+            <tr> <td>2010</td> <td>03</td> <td>F115</td> <td>Male</td> <td>8</td> </tr>
+            <tr> <td>2010</td> <td>05</td> <td>F022</td> <td>Female</td> <td>10.4</td> </tr>
+         </table>
+         </div>
+         
+         He wrote this program to help understand his data:
+         <pre>
+            sum = 0
+            count = 0
+            for each row in table:
+               if (row.Year = 2008) and (row.Sex = "Male") then:
+                  sum = sum + row.Beak_Size
+                  count = count + 1
+                  
+            print sum / count
+         </pre>
+      </div>
+
+      <div class="prompt">
+         <b>Item 2:</b> What does this program do?
+      </div>
+      <ol class="check-one">
+         <li>Counts all birds measured in 2008</li>
+         <li>Counts all male birds measured in 2008.</li>
+         <li>Computes the standard deviation of male beak size in 2008.</li>
+         <li>Computes the average beak size of male birds measured in 2008.</li>
+      </ol>
+   </div>
+
+
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         The same biologist wants to know the maximum beak size of all finches
+         from 2008 to 2010. He wrote this program, but it's not working correctly.
+         <pre>
+   Line 1:     maximum = 0
+   Line 2:     for each row in table:
+   Line 3:        if (row.Year &gt;= 2008) or (row.Year &lt;= 2010) then:
+   Line 4:           if (row.Beak_Size &gt; maximum)
+   Line 5:              maximum = row.Beak_Size
+   Line 6:     print maximum
+         </pre>
+      </div>
+
+      <div class="prompt">
+         <b>Item 3:</b> What is the problem and how would you fix it?
+      </div>
+      <textarea id="item3" placeholder="Enter your response here"></textarea>
+   </div>
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze1.png" style="float: right; margin-left: 20px; width: 220px;">
+         <p>
+         A team of engineering students is building an autonomous robot for a contest.
+         To win, they must program their robot to move around a grid while avoiding
+         obstacles. The robot moves exactly one square at a time either up, down,
+         left, or right.
+         </p>
+         The team started by writing this program to move their robot.
+         <pre>
+            move-up
+            move-right
+            move-up
+            move-right
+            move-right
+         </pre>
+      </div>
+      <br clear="all">
+      <div class="prompt">
+         <b>Item 4a:</b> After running the program, which square will the robot stop on.
+      </div>
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+      <br><br>
+      
+      <div class="stimulus">
+         The team tried changing their program to this:
+         <pre>
+            move-up
+            move-right
+            move-up
+            move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 4b:</b> Now where will the robot stop?
+      </div>
+      
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+   </div>
+   
+
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze2.png" style="float: right; margin-left: 20px; width: 220px;">
+         The team of engineering students added sensors to their robot to help
+         it avoid obstacles (shown as grey squares on the grid). Then they wrote
+         this program:
+         <pre>
+            if obstacle-left then:
+               move-right
+            if obstacle-up then:
+               move-down
+            if obstacle-right then:
+               move-left
+            if obstacle-down then:
+               move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 5a:</b> On which square will the robot stop?
+      </div>
+      
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+      <br><br>
+      
+      <div class="stimulus">
+         The students then changed their program to this:
+         <pre>
+            if obstacle-left then:
+               move-right
+            else if obstacle-up then:
+               move-down
+            else if obstacle-right then:
+               move-left
+            else:
+               move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 5b:</b> Now where will the robot stop?
+      </div>
+      <ol class="check-one two-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+      </ol>
+   </div>
+   
+   
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze3.png" style="float: right; margin-left: 10px; width: 200px;">
+         The students now want to make the robot move in a bigger
+         world. They tried this program, but the robot ran into an obstacle.
+         <pre>
+            repeat-forever:
+               move-up
+               move-right </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 6a:</b> Which obstacle did the robot hit?
+      </div>
+      
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+      
+<!--      
+      <div class="stimulus">
+         They tried a different program, but the robot ran into an obstacle again.
+         <pre>
+            repeat-forever:
+               move-right
+               move-up
+               move-up
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 6b:</b> Which obstacle did the robot hit this time?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+-->
+      <br><br>
+      <div class="stimulus">
+         They tried a different program, but the robot still hit an obstacle.
+         <pre>
+            repeat-forever:
+               move-up
+               repeat-until obstacle-right:
+                  move-right </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 6b:</b> Which obstacle did the robot hit this time? 
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+   </div>
+   
+
+
+<!-- ======================================================================= -->
+   <div class="page">
+      <div class="stimulus" style="text-align: center;">
+         The team needs to program the robot to move from the START square to
+         the STAR square.
+         <img src="figures/maze6.png" style="margin: 20px; width: 450px;">
+      </div>
+      <div class="prompt">
+         <b>Item 7:</b>  Try changing this program to move the robot to the STAR.
+      </div>
+      <div style="padding: 10px;">
+      <textarea id="code1" name="code1">
+repeat-forever:
+   move-up
+   move-right
+      </textarea>
+      </div>
+      <script>
+         var el = document.getElementById("code1");
+         var editor = CodeMirror.fromTextArea(el, {
+            lineNumbers: true,
+            theme : 'solarized dark'
+         });
+      </script>
+      <br><br>
+      <div class="simulus">
+         Here are the commands that the robot knows:
+         <pre style="padding: 10px; border: 1px solid black;">
+   move-up           move-down           move-left         move-right
+   
+   obstacle-up       obstacle-down       obstacle-left     obstacle-right
+   
+   repeat-forever:   repeat-until        if: else if: else:  </pre>
+      </div>
+   </div>
+   
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze5.png" style="width: 500px; margin-bottom: 12px;"><br>
+         The team has now tried to get the robot to start avoiding obstacles with
+         this program:
+         <pre>
+            define climb-stair-up:
+               move-up
+               move-right
+               
+            define climb-stair-down:
+               move-right
+               move-down
+               
+            define walk-right:
+               if obstacle-right then:
+                  climb-stair-up
+               else:
+                  right
+                  
+            repeat forever:
+               walk-right
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 8:</b> Which obstacle will the robot hit when it runs this program?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+   </div>
+   
+   
+<!--
+   <div class="page">
+      <div class="stimulus">
+         <img src="figures/maze5.png" style="width: 500px; margin-bottom: 12px;"><br>
+         They tried changing their program:
+         <pre>
+            define climb-stair-up:
+               move-up
+               move-right
+               
+            define climb-stair-down:
+               move-right
+               move-down
+               
+            define walk-right:
+               if obstacle-right then:
+                  climb-stair-up
+               else if obstacle-down then:
+                  right
+               else:
+                  climb-stair-down
+                  
+            repeat forever:
+               walk-right
+         </pre>
+      </div>
+      <div class="prompt">
+         <b>Item 10:</b> Which obstacle will the robot hit this time?
+      </div>
+      <ol class="check-one three-columns">
+         <li>Square A</li>
+         <li>Square B</li>
+         <li>Square C</li>
+         <li>Square D</li>
+         <li>Square E</li>
+      </ol>
+   </div>
+-->
+
+
+<!-- ======================================================================= -->   
+   <div class="page">
+      <h2>Data Structures</h2>
+      <p>
+         In computer programming, a <u>data structure</u> is a way of organizing
+         information. There are many different kinds of data
+         structures, but two of the most fundamental data structures are <u>lists</u>
+         and <u>lookup tables</u>. For this test, you will read a brief
+         description of these two data structures and then answer some questions
+         about them. <br>
+         <b>Even if you've never done any computer programming before, there are
+         important clues on this page that will help you answer the questions.</b>
+      </p>
+      
+      <!-- add visualization of structures -->
+      <h2>Lists</h2>
+      <p>
+         A <u>list</u>  is a type of data structure that stores information in a
+         sequence in a computer's memory. For example, if you wanted a computer
+         program to keep track of items in an online shopping cart, you might
+         place each item in a list. 
+      </p>
+      <div style="text-align: center;">
+         <img src="figures/list.png" style="width: 400px;">
+      </div>
+      <p>
+         A list is a good data structure if you need to process many items
+         one at a time. It is also efficient to retrieve the item stored at a
+         particular position in the list. For example, this computer code would
+         get the item at position 4 in the shopping cart.
+         <pre>
+            print shopping-cart[4] </pre>
+      </p>
+      <p>
+         However, lists are not efficient for searching for an item if you
+         don't know its position ahead of time. To search in a list
+         you would have to write a program to examine every item, one at a time.
+      </p>
+      
+      <h2>Lookup Tables</h2>
+      <p>
+         <img src="figures/map.png" style="float: right; width: 150px; margin-left: 10px;">
+         A <u>lookup table</u> is a type of data structure that stores items by
+         names (or key) rather than by position.
+         
+         Each entry in a lookup table consists of a key and a value.
+         
+         For example, you might want to store the cost of each item in your
+         shopping cart. This computer code would print out the cost of an apple
+         in your cart.
+         <pre>
+            print shopping-cart["apple"]
+         </pre>
+         With a lookup table it is efficient to find an item by its name.
+         However, unlike a list, the items are not stored in any particular
+         order.
+      </p>
+   </div>
+   
+
+   
+<!-- ======================================================================= -->   
+   <div class="page">
+      
+      <div class="stimulus">
+         <img src="figures/test_tube.png" style="float: right; margin-left: 10px;">
+         <b>Item 9a:</b> A scientist is studying the acidity of sea water.
+         She has entered 500 measurements into a computer over the past year.
+         If she wants to know the minimum, maximum, and average value of all
+         of her measurements, what data structure should she use and why?
+      </div>
+      
+      <ol class="check-one">
+         <li>A list because the order of the measurements is important.</li>
+         <li>A lookup table because it is efficient to look up a measurement by its name or key value.</li>
+         <li>A list because it is good for processing each measurement one at a time.</li>
+         <li>A lookup table because the order of the measurements is not important.</li>
+      </ol>
+      
+      <br><br><br>
+      <div class="stimulus">
+         <img src="figures/stars.png" style="float: right; margin-left: 20px;">
+         <b>Item 9b:</b> An astrophysicist need to be able to efficiently find the mass of
+         different stars based on their names. She has a dataset of over
+         300,000 stars. Which data structure should she use to store this
+         information and why?
+      </div>
+
+      <ol class="check-one">
+         <li>A list because the order of the stars is important.</li>
+         <li>A lookup table because it is efficient to look up a star by its name or key value.</li>
+         <li>A list because it is good for processing each value one at a time.</li>
+         <li>A lookup table because the order of the values is not important.</li>
+      </ol>
+      
+   </div>
+
+
+
+   
+<!-- ======================================================================= -->   
+   <div class="page">
+      
+      <div class="stimulus">
+         <img src="figures/flower.png" style="float: right; margin-left: 20px;">
+         <b>Item 10:</b> A biologist is studying the flowering times of
+         different plants based on environmental conditions. He wants to know
+         how many plants in his greenhouse flowered in the first 10 days of his
+         study, so he wrote this computer program:
+         <pre>
+            count = 0
+            for each time in flower_times:
+               if time &lt;= 10 then:
+                  count = count + 1
+            print count
+         </pre>
+      </div>
+      
+      <div class="prompt">
+         Looking at his program, which data structure did he use?
+      </div>
+         
+      <ol class="check-one">
+         <li>A lookup table because he's looking up each item by name.</li>
+         <li>A list because he's looking up each item by position.</li>
+         <li>A lookup table because the order of the items is not important.</li>
+         <li>A lookup table because lists are not efficient for searching for items if you don't know their posistions ahead of time.</li>
+      </ol>
+   </div>
+   
+
+   
+<!-- ======================================================================= -->   
+   <div class="page">
+      <h1>Congratulations!</h1>
+      <h2>You're finished. Use any remaining time to go back and check your answers.</h2>
+   </div>
+
+   
+<!-- ======================================================================= -->
+   <div class="page">
+      <h1>CT-STEM Skills Taxonomy</h1>
+      <h2>Skills from Computer Science</h2>
+      <ol>
+         <li>Interpreting Instructions Written for a Computer</li>
+         <li>Defining Instructions for a Computer</li>
+         <li>Developing Modular Computational Solutions</li>
+         <li>Choosing Effective Computational Tools</li>
+         <li>Applying Conditional Logic</li>
+         <li>Effectively Using Recursion and Iterative Logic</li>
+         <li>Creating Abstractions</li>
+         <li>Choosing Efficient Data Structures</li>
+      </ol>
+   </div>
+</div>
+
+
+   
+</body>
+</html>
